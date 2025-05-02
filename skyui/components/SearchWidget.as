@@ -51,7 +51,9 @@ class skyui.components.SearchWidget extends MovieClip
 		
 		textField.SetText(S_FILTER);
 
-		ConfigManager.registerLoadCallback(this, "onConfigLoad");
+		// ConfigManager.registerLoadCallback(this, "onConfigLoad");
+		_bEnableAutoupdate = true;
+		_updateDelay = 0;
 	}
 	
 	
@@ -66,15 +68,21 @@ class skyui.components.SearchWidget extends MovieClip
 	public var removeAllEventListeners: Function;
 	public var cleanUpEvents: Function;
 	
-	public function onConfigLoad(event): Void
+	// public function onConfigLoad(event): Void
+	// {
+	// 	var config = event.config;
+	// 	_bEnableAutoupdate = config.SearchBox.autoupdate.enable;
+	// 	_updateDelay = config.SearchBox.autoupdate.delay;
+	// }
+
+	public function get isActive(): Boolean
 	{
-		var config = event.config;
-		_bEnableAutoupdate = config.SearchBox.autoupdate.enable;
-		_updateDelay = config.SearchBox.autoupdate.delay;
+		return _bActive;
 	}
 	
 	public function onPress(a_mouseIndex, a_keyboardOrMouse)
 	{
+		trace("onPress");
 		startInput();
 	}
 
